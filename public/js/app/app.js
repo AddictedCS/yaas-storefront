@@ -42,7 +42,8 @@ window.app = angular.module('ds.app', [
     'ds.localstorage',
     'ds.appconfig',
     'ds.searchlist',
-    'ds.ysearch'
+    'ds.ysearch',
+    'ds.recommendations'
 ])
     .constant('_', window._)
 
@@ -74,9 +75,11 @@ window.app = angular.module('ds.app', [
     }])
 
     .run(['$rootScope', '$injector','ConfigSvc', 'AuthDialogManager', '$location', 'settings', 'TokenSvc',
-       'AuthSvc', 'GlobalData', '$state', 'httpQueue', 'editableOptions', 'editableThemes', 'CartSvc', 'EventSvc',
+       'AuthSvc', 'GlobalData', '$state', 'httpQueue', 'editableOptions', 'editableThemes', 'CartSvc',
+       'EventSvc', 'RecommendMeSvc',
         function ($rootScope, $injector, ConfigSvc, AuthDialogManager, $location, settings, TokenSvc,
-                 AuthSvc, GlobalData, $state, httpQueue, editableOptions, editableThemes, CartSvc, EventSvc) {
+                 AuthSvc, GlobalData, $state, httpQueue, editableOptions, editableThemes, CartSvc,
+                 EventSvc, RecommendMeSvc) {
 
             //closeOffcanvas func for mask
             $rootScope.closeOffcanvas = function(){
@@ -134,11 +137,17 @@ window.app = angular.module('ds.app', [
                 EventSvc.onLanguageChange(event, eveObj);
             });
 
+            $rootScope.$on('product:opened', function (eve, eveObj) {
+                RecommendMeSvc.triggerViewEvent(eveObj.product.id);
+            });
+
+            $rootScope.$on('order:placed', function (eve, eveObj) {
+                RecommendMeSvc.triggerOrderEvent(eveObj.cart);
+            });
+
             // setting root scope variables that drive class attributes in the BODY tag
             $rootScope.showCart =false;
             $rootScope.showMobileNav=false;
         }
 
     ]);
-
-
