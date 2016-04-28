@@ -8,17 +8,16 @@ angular.module('ds.recommendations')
            return {
               triggerViewEvent: function (productId) {
                    var deviceId = CookieSvc.getRecsDeviceId();
-                   console.log('Trigger view P{' + productId + '}, U{' + deviceId + '}');
                    var data = [{
                      'productId' : productId,
                      'userId': deviceId,
                      'date': new Date().toISOString()
                    }];
-                   RecommendationsREST.Recommendations.one('views').customPOST(data).then(function() {
-                            console.log('All ok');
+                   RecommendationsREST.Recommendations.one('views').customPOST(data).then(function(eventResponse) {
+                           CookieSvc.setRecsDeviceIdCookie(eventResponse.userId);
                         }, function(response) {
-                            console.log('Error with status code', response.status);
-                        });
+                           console.log('Error with status code, do something!', response.status);
+                   });
               },
 
               triggerOrderEvent: function(cart) {
@@ -36,11 +35,11 @@ angular.module('ds.recommendations')
                     });
                 }
 
-                RecommendationsREST.Recommendations.one('orders').customPOST(data).then(function() {
-                         console.log('All ok');
+                RecommendationsREST.Recommendations.one('orders').customPOST(data).then(function(eventResponse) {
+                         CookieSvc.setRecsDeviceIdCookie(eventResponse.userId);
                      }, function(response) {
-                         console.log('Error with status code', response.status);
-                });
-              }
+                         console.log('Error with status code, do something!', response.status);
+                     });
+                }
             };
         }]);

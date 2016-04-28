@@ -82,10 +82,14 @@ angular.module('ds.shared')
                 return consentReferenceCookie;
             },
 
+            setRecsDeviceIdCookie: function(deviceId) {
+               ipCookie(settings.recsDeviceId, deviceId, { expirationUnit: 'days', expires: 30 });
+            },
+
             getRecsDeviceId: function() {
               var deviceIdCookie = ipCookie(settings.recsDeviceId);
               if(deviceIdCookie) {
-                return deviceIdCookie.recsDeviceId;
+                return deviceIdCookie;
               }
               return '';
             }
