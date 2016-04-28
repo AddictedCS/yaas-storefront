@@ -30,7 +30,7 @@ angular.module('ds.shared')
         languageCookie: 'languageCookie',
         siteCookie: 'siteCookie',
         consentReferenceCookie: 'consentReferenceCookie',
-
+        recsDeviceId: 'recsDeviceId',
         // header keys
         headers: {
 

@@ -80,8 +80,15 @@ angular.module('ds.shared')
                     return consentReferenceCookie.consentReference;
                 }
                 return consentReferenceCookie;
-            }
+            },
 
+            getRecsDeviceId: function() {
+              var deviceIdCookie = ipCookie(settings.recsDeviceId);
+              if(deviceIdCookie) {
+                return deviceIdCookie.recsDeviceId;
+              }
+              return '';
+            }
         };
 
         return CookieSvc;
