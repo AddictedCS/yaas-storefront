@@ -144,6 +144,18 @@ angular.module('ds.router', [])
 
                         }],
 
+                        recommendations: ['$stateParams', 'RecommendationsREST', 'initialized', function($stateParams, RecommendationsREST, initialized) {
+                          if(initialized) {
+                            return RecommendationsREST.Recommendations.one('recommendations').customGET('', { productId: $stateParams.productId, maxCount: 3, returnFields: 'all' } )
+                                   .then(function(recs) {
+                                     if(recs && recs.recommendations) {
+                                       console.log(recs.recommendations)
+                                       return recs.recommendations;
+                                     }
+                                   });
+                          }
+                        }],
+
                         lastCatId: function ($stateParams) {
                             if($stateParams.lastCatId !== 'lastCatId') {
                                 return $stateParams.lastCatId;
@@ -347,5 +359,3 @@ angular.module('ds.router', [])
             $locationProvider.hashPrefix('!');
         }
     ]);
-
-
