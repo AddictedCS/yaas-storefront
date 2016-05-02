@@ -29,7 +29,7 @@ angular.module('ds.recommendations')
                     var item = cart.items[i];
                     data.push({
                       'userId': deviceId,
-                      'externalUserId': GlobalData.customerAccount.id,
+                      'externalUserId': (GlobalData.customerAccount) ? GlobalData.customerAccount.id : deviceId,
                       'productId': item.product.id,
                       'orderDate': new Date().toISOString()
                     });
