@@ -1,8 +1,8 @@
 ---
 applications:
-- name: store-template-simple
+- name: recommend-me-storefront
   buildpack: https://github.com/drnic/staticfile-buildpack.git
   memory: 64M
-  host: store-template-simple
+  host: recommend-me-storefront
   instances: 1
-  path: dist
+  path: dist/public

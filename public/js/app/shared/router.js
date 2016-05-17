@@ -149,7 +149,6 @@ angular.module('ds.router', [])
                             return RecommendationsREST.Recommendations.one('recommendations').customGET('', { productId: $stateParams.productId, maxCount: 3, returnFields: 'all' } )
                                    .then(function(recs) {
                                      if(recs && recs.recommendations) {
-                                       console.log(recs.recommendations)
                                        return recs.recommendations;
                                      }
                                    });
