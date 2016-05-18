@@ -8,34 +8,32 @@ angular.module('ds.recommendations')
            return {
               triggerViewEvent: function (productId) {
                    var deviceId = CookieSvc.getRecsDeviceId();
-                   var data = [{
+                   var data = {
                      'productId' : productId,
-                     'userId': deviceId,
-                     'date': new Date().toISOString()
-                   }];
-                   RecommendationsREST.Recommendations.one('views').customPOST(data).then(function(eventResponse) {
+                     'userId': deviceId
+                   };
+                   RecommendationsREST.Recommendations.one('events/view').customPOST(data).then(function(eventResponse) {
                            CookieSvc.setRecsDeviceIdCookie(eventResponse.userId);
                         }, function(response) {
-                           console.log('Error with status code, do something!', response.status);
+                            console.log('Error with status code, do something!', response.status);
                    });
               },
 
-              triggerOrderEvent: function(cart) {
+              triggerPurchaseEvent: function(cart) {
                 var deviceId = CookieSvc.getRecsDeviceId();
-                //Send ordered cart items to piwik
-                var data = [];
+                var products = [];
                 for (var i = 0; i < cart.items.length; i++) {
-                    //sku, name, categoryName, unitPrice, amount
                     var item = cart.items[i];
-                    data.push({
-                      'userId': deviceId,
-                      'externalUserId': (GlobalData.customerAccount) ? GlobalData.customerAccount.id : deviceId,
-                      'productId': item.product.id,
-                      'orderDate': new Date().toISOString()
-                    });
+                    products.push(item.product.id);
                 }
 
-                RecommendationsREST.Recommendations.one('orders').customPOST(data).then(function(eventResponse) {
+                var data = {
+                  'userId': deviceId,
+                  'externalUserId': (GlobalData.customerAccount) ? GlobalData.customerAccount.id : deviceId,
+                  'products': products
+                };
+
+                RecommendationsREST.Recommendations.one('events/purchase').customPOST(data).then(function(eventResponse) {
                          CookieSvc.setRecsDeviceIdCookie(eventResponse.userId);
                      }, function(response) {
                          console.log('Error with status code, do something!', response.status);

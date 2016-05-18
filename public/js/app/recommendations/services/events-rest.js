@@ -16,7 +16,7 @@ angular.module('ds.recommendations')
                     httpConfig: httpConfig
                 };
             });
-        }
+      }
 
 
         return {

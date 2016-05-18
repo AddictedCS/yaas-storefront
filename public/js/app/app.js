@@ -143,7 +143,7 @@ window.app = angular.module('ds.app', [
             });
 
             $rootScope.$on('order:placed', function (eve, eveObj) {
-                RecommendMeSvc.triggerOrderEvent(eveObj.cart);
+                RecommendMeSvc.triggerPurchaseEvent(eveObj.cart);
             });
 
             // setting root scope variables that drive class attributes in the BODY tag
