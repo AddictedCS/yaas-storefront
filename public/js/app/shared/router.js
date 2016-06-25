@@ -146,7 +146,7 @@ angular.module('ds.router', [])
 
                         recommendations: ['$stateParams', 'RecommendationsREST', 'initialized', function($stateParams, RecommendationsREST, initialized) {
                           if(initialized) {
-                            return RecommendationsREST.Recommendations.one('recommendations').customGET('', { productId: $stateParams.productId, maxCount: 3 } )
+                            return RecommendationsREST.Recommendations.one('recommendations').customGET('', { productId: $stateParams.productId, count: 3 } )
                                    .then(function(recs) {
                                      if(recs && recs.recommendations) {
                                        return recs.recommendations;

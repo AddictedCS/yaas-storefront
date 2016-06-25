@@ -24,6 +24,9 @@ angular.module('ds.recommendations')
             Recommendations: Restangular.withConfig(function (RestangularConfigurer) {
                     RestangularConfigurer.setBaseUrl(siteConfig.apis.recommendations.baseUrl);
                     applyLanguageHeader(RestangularConfigurer);
+                    RestangularConfigurer.setErrorInterceptor(function(response) {
+                        return false; // this should prevent 404 redirect, but it doesn't
+                   });
             })
         };
       }]);

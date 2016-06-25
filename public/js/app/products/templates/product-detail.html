@@ -7,20 +7,33 @@
         <div class="row">
             <!-- product gallery -->
             <div class="col-md-6">
-                <div class="product-gallery">
+                <div class="gallery product-gallery">
                     <div class="row">
-                        <product-img-carousel images="product.product.media"></product-img-carousel>
-                    </div>
-                   <!-- product recommendations -->
-                   <div class="row">
-                     <div class="col-md-4" ng-repeat="rec in recommendations">
-                       <div class=" thumbnails" ng-if="rec.meta.imgUrl">
-                         <a class="item" href="#">
-                            <img class="lazyOwl" data-src="{{rec.meta.imgUrl}}" alt="">
-                         </a>
+                      <div class="col-md-10">
+                          <div class="image">
+                              <div ng-repeat="image in product.product.media">
+                                  <img class="lazyOwl" data-src="{{image.url}}" data-zoom="{{image.url}}" alt="">
+                              </div>
+                          </div>
                         </div>
-                     </div>
-                   </div>
+                        <div class="col-md-2">
+                          <div class=" thumbnails" ng-if="product.product.media && product.product.media.length > 1">
+                              <a ng-repeat="image in product.product.media" class="item" href="#">
+                                  <img class="lazyOwl" data-src="{{image.url}}" alt="">
+                              </a>
+                          </div>
+                        </div>
+                    </div>
+                    <!-- product recommendations -->
+                    <div class="row">
+                      <div class="col-md-4" ng-repeat="rec in recommendations">
+                        <div class=" thumbnails" ng-if="rec.media">
+                          <a class="item" href="#">
+                             <img class="lazyOwl" data-src="{{rec.media[0].url}}" alt="">
+                          </a>
+                         </div>
+                      </div>
+                    </div>
                 </div>
             </div>
 
