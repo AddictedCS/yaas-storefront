@@ -1,8 +1,8 @@
 ---
 applications:
-- name: recommend-me-storefront
+- name: nemo-ai-storefront-demo
   buildpack: https://github.com/drnic/staticfile-buildpack.git
   memory: 64M
-  host: recommend-me-storefront
+  host: nemo-ai-storefront-demo
   instances: 1
   path: dist/public

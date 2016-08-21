@@ -100,7 +100,7 @@ angular.module('ds.shared')
                     baseUrl: 'https://' + apiPath + '/hybris/search-algolia/v1/' + tenantId
                 },
                 recommendations: {
-                    baseUrl: 'http://127.0.0.1:9999/nemo-ai/' + tenantId
+                    baseUrl: 'https://' + apiPath + '/nemo-ai/product-recommendations/v1/' + tenantId
                 }
             };
 

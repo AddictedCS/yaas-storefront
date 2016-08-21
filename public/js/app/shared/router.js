@@ -148,8 +148,8 @@ angular.module('ds.router', [])
                           if(initialized) {
                             return RecommendationsREST.Recommendations.one('recommendations').customGET('', { productId: $stateParams.productId, count: 3 } )
                                    .then(function(recs) {
-                                     if(recs && recs.recommendations) {
-                                       return recs.recommendations;
+                                     if(recs) {
+                                       return recs;
                                      }
                                    });
                           }

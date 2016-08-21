@@ -35,19 +35,19 @@ angular.module('ds.appconfig', [])
                 tenantId = window.location.pathname.substring( 1, pathLength-1 );
             } else {
                 // Dynamic ProjectId is configured and replaced by build script, see gruntfile.
-                tenantId = /*StartProjectId*/ 'defaultproj' /*EndProjectId*/;
+                tenantId = /*StartProjectId*/ 'nemoaistorefront' /*EndProjectId*/;
             }
             return tenantId;
         },
 
         clientId: function() {
             // Dynamic ClientId is configured and replaced by build script, see gruntfile.
-            return /*StartClientId*/ 'hkpWzlQnCIe4MSTi1Ud94Q7O36aRrRrO' /*EndClientId*/;
+            return /*StartClientId*/ 'Zi2cnm9yYdUsWJdY5AvPioefdIbNi5FG' /*EndClientId*/;
         },
 
         redirectURI: function() {
             // Dynamic RedirectURI is configured and replaced by build script, see gruntfile.
-            return /*StartRedirectURI*/ 'http://recommend-me-storefront.cfapps.io' /*EndRedirectURI*/;
+            return /*StartRedirectURI*/ 'http://nemo-ai-storefront-demo.cfapps.io' /*EndRedirectURI*/;
         }
 
 
